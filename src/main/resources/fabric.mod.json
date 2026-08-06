@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "redstonediode",
+	"version": "${version}",
+	"name": "Redstone Diode",
+	"description": "Adds a Redstone Diode to Minecraft",
+	"authors": [
+		"MCRedstoner2026"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/"
+	},
+	"license": "MIT",
+	"icon": "assets/redstonediode/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.mcredstoner2026.redstonediode.RedstoneDiode"
+		],
+		"fabric-datagen": [
+			"net.mcredstoner2026.redstonediode.RedstoneDiodeDataGenerator"
+		],
+		"client": [
+			"net.mcredstoner2026.redstonediode.RedstoneDiodeClient"
+		]
+	},
+	"mixins": [
+		"redstonediode.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
