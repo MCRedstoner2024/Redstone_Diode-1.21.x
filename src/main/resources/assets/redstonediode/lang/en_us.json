@@ -1,0 +1,18 @@
+{
+  "item.redstonediode.redstone_test_item": "Redstone Test Item",
+  "item.redstonediode.chisel": "Chisel",
+
+  "block.redstonediode.redstone_test_block": "Redstone Test Block",
+  "block.redstonediode.redstone_test_stairs": "Redstone Test Stairs",
+  "block.redstonediode.redstone_test_slab": "Redstone Test Slab",
+  "block.redstonediode.redstone_test_button": "Redstone Test Button",
+  "block.redstonediode.redstone_test_pressure_plate": "Redstone Test Pressure Plate",
+  "block.redstonediode.redstone_test_fence": "Redstone Test Fence",
+  "block.redstonediode.redstone_test_fence_gate": "Redstone Test Fence Gate",
+  "block.redstonediode.redstone_test_wall": "Redstone Test Wall",
+  "block.redstonediode.redstone_test_door": "Redstone Test Door",
+  "block.redstonediode.redstone_test_trapdoor": "Redstone Test Trapdoor",
+  "block.redstonediode.magic_block": "Magic Block",
+
+  "itemgroup.redstonediode.redstone_test_items": "Redstone Test Items"
+}

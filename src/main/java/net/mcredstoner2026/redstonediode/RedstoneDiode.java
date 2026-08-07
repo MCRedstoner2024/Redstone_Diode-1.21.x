@@ -2,6 +2,9 @@ package net.mcredstoner2026.redstonediode;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.mcredstoner2026.redstonediode.block.ModBlocks;
+import net.mcredstoner2026.redstonediode.item.ModItemGroups;
+import net.mcredstoner2026.redstonediode.item.ModItems;
 import net.minecraft.util.Identifier;
 
 import org.slf4j.Logger;
@@ -13,5 +16,9 @@ public class RedstoneDiode implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModItemGroups.registerItemGroups();
+
+		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
 	}
 }

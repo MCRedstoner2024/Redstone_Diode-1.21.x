@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "redstonediode:block/redstone_test_block"
+    }
+  }
+}
