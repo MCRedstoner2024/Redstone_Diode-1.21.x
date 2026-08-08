@@ -2,7 +2,9 @@ package net.mcredstoner2026.redstonediode.block;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.mcredstoner2026.redstonediode.RedstoneDiode;
+import net.mcredstoner2026.redstonediode.block.custom.ChairBlock;
 import net.mcredstoner2026.redstonediode.block.custom.MagicBlock;
+import net.mcredstoner2026.redstonediode.block.custom.RedstoneDiodeBlock;
 import net.mcredstoner2026.redstonediode.block.custom.RedstoneTestLampBlock;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
@@ -66,6 +68,14 @@ public class ModBlocks {
                     .strength(1f)
                     .requiresTool()
                     .luminance(state -> state.get(RedstoneTestLampBlock.CLICKED) ? 15 : 0)));
+
+
+    public static final Block CHAIR = registerBlock("chair",
+            new ChairBlock(AbstractBlock.Settings.create().nonOpaque()));
+
+    public static final Block REDSTONE_DIODE = registerBlock("redstone_diode",
+            new RedstoneDiodeBlock(AbstractBlock.Settings.create().nonOpaque()));
+
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

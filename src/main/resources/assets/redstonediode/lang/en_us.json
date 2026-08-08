@@ -14,6 +14,7 @@
   "block.redstonediode.redstone_test_trapdoor": "Redstone Test Trapdoor",
   "block.redstonediode.magic_block": "Magic Block",
   "block.redstonediode.redstone_test_lamp": "Redstone Test Lamp",
+  "block.redstonediode.chair": "Chair",
 
   "itemgroup.redstonediode.redstone_test_items": "Redstone Test Items"
 }

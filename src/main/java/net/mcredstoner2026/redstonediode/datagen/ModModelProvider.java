@@ -35,6 +35,10 @@ public class ModModelProvider extends FabricModelProvider {
         Identifier lampOnIdentifier = blockStateModelGenerator.createSubModel(ModBlocks.REDSTONE_TEST_LAMP, "_on", Models.CUBE_ALL, TextureMap::all);
         blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(ModBlocks.REDSTONE_TEST_LAMP)
                 .coordinate(BlockStateModelGenerator.createBooleanModelMap(RedstoneTestLampBlock.CLICKED, lampOnIdentifier, lampOffIdentifier)));
+
+
+
+        blockStateModelGenerator.registerNorthDefaultHorizontalRotation(ModBlocks.CHAIR);
     }
 
     @Override
