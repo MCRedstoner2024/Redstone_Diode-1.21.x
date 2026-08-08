@@ -1,10 +1,10 @@
 {
   "variants": {
     "powered=false": {
-      "model": "redstonediode:block/redstone_diode"
+      "model": "redstonediode:block/redstone_diode_off"
     },
     "powered=true": {
-      "model": "redstonediode:block/redstone_diode_powered"
+      "model": "redstonediode:block/redstone_diode_on"
     }
   }
 }

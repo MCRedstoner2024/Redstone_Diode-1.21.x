@@ -8,10 +8,26 @@ import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public class RedstoneDiodeBlock extends Block {
+    private static final VoxelShape SHAPE = VoxelShapes.union(
+            // Base
+            Block.createCuboidShape(5, 0, 5, 11, 2, 11),
+
+            // Middle
+            Block.createCuboidShape(6, 2, 6, 10, 4, 10),
+
+            // Torch stem
+            Block.createCuboidShape(7, 4, 7, 9, 12, 9),
+
+            // Torch top
+            Block.createCuboidShape(6, 12, 6, 10, 14, 10)
+    );
+
     public static final IntProperty POWER = Properties.POWER;
     public static final BooleanProperty POWERED = Properties.POWERED;
 
@@ -28,16 +44,10 @@ public class RedstoneDiodeBlock extends Block {
         builder.add(POWER, POWERED);
     }
 
-    /**
-     * Gets the redstone power received by the block underneath.
-     */
     private static int getInputPower(World world, BlockPos pos) {
         return world.getReceivedRedstonePower(pos.down());
     }
 
-    /**
-     * Updates POWER and POWERED.
-     */
     private static void updatePower(World world, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
 
