@@ -3,6 +3,7 @@ package net.mcredstoner2026.redstonediode.block;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.mcredstoner2026.redstonediode.RedstoneDiode;
 import net.mcredstoner2026.redstonediode.block.custom.MagicBlock;
+import net.mcredstoner2026.redstonediode.block.custom.RedstoneTestLampBlock;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -60,10 +61,17 @@ public class ModBlocks {
             new TrapdoorBlock(BlockSetType.IRON,
                     AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
 
+    public static final Block REDSTONE_TEST_LAMP = registerBlock("redstone_test_lamp",
+            new RedstoneTestLampBlock(AbstractBlock.Settings.create()
+                    .strength(1f)
+                    .requiresTool()
+                    .luminance(state -> state.get(RedstoneTestLampBlock.CLICKED) ? 15 : 0)));
+
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(RedstoneDiode.MOD_ID, name), block);
     }
+
 
     private static void registerBlockItem(String name, Block block) {
         Registry.register(Registries.ITEM, Identifier.of(RedstoneDiode.MOD_ID, name),

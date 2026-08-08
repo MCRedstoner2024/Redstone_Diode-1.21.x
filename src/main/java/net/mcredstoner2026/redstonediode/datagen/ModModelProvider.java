@@ -3,10 +3,10 @@ package net.mcredstoner2026.redstonediode.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.mcredstoner2026.redstonediode.block.ModBlocks;
+import net.mcredstoner2026.redstonediode.block.custom.RedstoneTestLampBlock;
 import net.mcredstoner2026.redstonediode.item.ModItems;
-import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.Models;
+import net.minecraft.data.client.*;
+import net.minecraft.util.Identifier;
 
 public class ModModelProvider extends FabricModelProvider {
     public ModModelProvider(FabricDataOutput output) {
@@ -30,6 +30,11 @@ public class ModModelProvider extends FabricModelProvider {
 
         blockStateModelGenerator.registerDoor(ModBlocks.REDSTONE_TEST_DOOR);
         blockStateModelGenerator.registerTrapdoor(ModBlocks.REDSTONE_TEST_TRAPDOOR);
+
+        Identifier lampOffIdentifier = TexturedModel.CUBE_ALL.upload(ModBlocks.REDSTONE_TEST_LAMP, blockStateModelGenerator.modelCollector);
+        Identifier lampOnIdentifier = blockStateModelGenerator.createSubModel(ModBlocks.REDSTONE_TEST_LAMP, "_on", Models.CUBE_ALL, TextureMap::all);
+        blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(ModBlocks.REDSTONE_TEST_LAMP)
+                .coordinate(BlockStateModelGenerator.createBooleanModelMap(RedstoneTestLampBlock.CLICKED, lampOnIdentifier, lampOffIdentifier)));
     }
 
     @Override

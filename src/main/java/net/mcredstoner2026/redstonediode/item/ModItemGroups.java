@@ -34,6 +34,8 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.REDSTONE_TEST_DOOR);
                         entries.add(ModBlocks.REDSTONE_TEST_TRAPDOOR);
+
+                        entries.add(ModBlocks.REDSTONE_TEST_LAMP);
                     }).build());
 
 
