@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "redstonediode:block/redstone_diode_on"
+  }
+}

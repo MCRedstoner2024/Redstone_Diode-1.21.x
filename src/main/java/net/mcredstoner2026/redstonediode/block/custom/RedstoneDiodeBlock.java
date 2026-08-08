@@ -2,6 +2,7 @@ package net.mcredstoner2026.redstonediode.block.custom;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
@@ -21,11 +22,11 @@ public class RedstoneDiodeBlock extends Block {
             // Middle
             Block.createCuboidShape(6, 2, 6, 10, 4, 10),
 
-            // Torch stem
-            Block.createCuboidShape(7, 4, 7, 9, 12, 9),
+            // Stem
+            Block.createCuboidShape(7, 4, 7, 9, 14, 9),
 
-            // Torch top
-            Block.createCuboidShape(6, 12, 6, 10, 14, 10)
+            // Top
+            Block.createCuboidShape(6, 14, 6, 10, 16, 10)
     );
 
     public static final IntProperty POWER = Properties.POWER;
@@ -130,5 +131,25 @@ public class RedstoneDiodeBlock extends Block {
         }
 
         return 0;
+    }
+
+    @Override
+    protected VoxelShape getOutlineShape(
+            BlockState state,
+            BlockView world,
+            BlockPos pos,
+            ShapeContext context
+    ) {
+        return SHAPE;
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(
+            BlockState state,
+            BlockView world,
+            BlockPos pos,
+            ShapeContext context
+    ) {
+        return SHAPE;
     }
 }
