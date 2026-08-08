@@ -25,18 +25,5 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(RecipeExporter exporter) {
         offerReversibleCompactingRecipes(exporter, RecipeCategory.REDSTONE, ModItems.REDSTONE_TEST_ITEM, RecipeCategory.REDSTONE, ModBlocks.REDSTONE_TEST_BLOCK);
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.REDSTONE_TEST_BLOCK)
-                .pattern("RRR")
-                .pattern("RRR")
-                .pattern("RRR")
-                .input('R', ModItems.REDSTONE_TEST_ITEM)
-                .criterion(hasItem(ModItems.REDSTONE_TEST_ITEM), conditionsFromItem(ModItems.REDSTONE_TEST_ITEM))
-                .offerTo(exporter);
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.REDSTONE_TEST_ITEM, 32)
-                .input(ModBlocks.MAGIC_BLOCK)
-                .criterion(hasItem(ModBlocks.REDSTONE_TEST_BLOCK), conditionsFromItem(ModBlocks.REDSTONE_TEST_BLOCK))
-                .offerTo(exporter, Identifier.of(RedstoneDiode.MOD_ID, "redstone_test_item_from_magic_block"));
     }
 }

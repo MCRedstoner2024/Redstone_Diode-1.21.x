@@ -21,5 +21,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.REDSTONE_TEST_BLOCK);
+
+        getOrCreateTagBuilder(BlockTags.WOODEN_FENCES).add(ModBlocks.REDSTONE_TEST_FENCE);
+        getOrCreateTagBuilder(BlockTags.FENCE_GATES).add(ModBlocks.REDSTONE_TEST_FENCE_GATE);
+        getOrCreateTagBuilder(BlockTags.WALLS).add(ModBlocks.REDSTONE_TEST_WALL);
     }
 }

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "redstonediode:block/redstone_test_block"
-  }
-}

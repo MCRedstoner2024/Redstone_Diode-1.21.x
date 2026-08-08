@@ -33,12 +33,12 @@ public class ModBlocks {
 
 
     public static final Block REDSTONE_TEST_BUTTON = registerBlock("redstone_test_button",
-            new ButtonBlock(BlockSetType.IRON, 2,
+            new ButtonBlock(BlockSetType.IRON, 1,
                     AbstractBlock.Settings.create().strength(2f).requiresTool().noCollision()));
 
     public static final Block REDSTONE_TEST_PRESSURE_PLATE = registerBlock("redstone_test_pressure_plate",
             new PressurePlateBlock(BlockSetType.IRON,
-                    AbstractBlock.Settings.create().strength(2f).requiresTool().noCollision()));
+                    AbstractBlock.Settings.create().strength(2f).requiresTool()));
 
 
     public static final Block REDSTONE_TEST_FENCE = registerBlock("redstone_test_fence",
