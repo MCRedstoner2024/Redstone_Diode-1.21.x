@@ -1,7 +1,9 @@
 package net.mcredstoner2026.redstonediode.block.custom;
 
+import net.mcredstoner2026.redstonediode.RedstoneDiode;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -13,19 +15,14 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
 
 public class RedstoneDiodeBlock extends Block {
     private static final VoxelShape SHAPE = VoxelShapes.union(
-            // Base
             Block.createCuboidShape(5, 0, 5, 11, 2, 11),
-
-            // Middle
             Block.createCuboidShape(6, 2, 6, 10, 4, 10),
-
-            // Stem
             Block.createCuboidShape(7, 4, 7, 9, 14, 9),
-
-            // Top
             Block.createCuboidShape(6, 14, 6, 10, 16, 10)
     );
 
@@ -46,22 +43,22 @@ public class RedstoneDiodeBlock extends Block {
     }
 
     private static int getInputPower(World world, BlockPos pos) {
-        return world.getReceivedRedstonePower(pos.down());
+        return  world.getBlockState(pos.down()).isFullCube(world,pos.down()) ? world.getReceivedStrongRedstonePower(pos.down()) : 0;
     }
 
-    private static void updatePower(World world, BlockPos pos) {
+    private void updatePower(World world, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
-
         int power = getInputPower(world, pos);
         boolean powered = power > 0;
 
         if (state.get(POWER) != power || state.get(POWERED) != powered) {
             world.setBlockState(
                     pos,
-                    state
-                            .with(POWER, power)
-                            .with(POWERED, powered)
+                    state.with(POWER, power).with(POWERED, powered)
             );
+
+            world.updateNeighborsAlways(pos, this);
+            world.updateNeighborsAlways(pos.up(), this);
         }
     }
 
@@ -100,18 +97,13 @@ public class RedstoneDiodeBlock extends Block {
     }
 
     @Override
-    public boolean emitsRedstonePower(BlockState state) {
-        return true;
-    }
-
-    @Override
     public int getStrongRedstonePower(
             BlockState state,
             BlockView world,
             BlockPos pos,
             Direction direction
     ) {
-        if (direction == Direction.UP) {
+        if (direction == Direction.DOWN) {
             return state.get(POWER);
         }
 
@@ -126,7 +118,7 @@ public class RedstoneDiodeBlock extends Block {
             BlockPos pos,
             Direction direction
     ) {
-        if (direction == Direction.UP) {
+        if (direction == Direction.DOWN) {
             return state.get(POWER);
         }
 
@@ -151,5 +143,35 @@ public class RedstoneDiodeBlock extends Block {
             ShapeContext context
     ) {
         return SHAPE;
+    }
+
+    private static boolean hasSupport(WorldView world, BlockPos pos) {
+        return world.getBlockState(pos.down()).isFullCube(world,pos.down()) && world.getBlockState(pos.down()).isOpaque();
+    }
+
+    protected boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        return world.getBlockState(pos.down()).isFullCube(world,pos.down()) && world.getBlockState(pos.down()).isOpaque();
+    }
+
+    protected BlockState getStateForNeighborUpdate(
+            BlockState state,
+            Direction direction,
+            BlockState neighborState,
+            WorldAccess world,
+            BlockPos pos,
+            BlockPos neighborPos
+    ) {
+        if (direction == Direction.DOWN && !hasSupport(world, pos)) {
+            return Blocks.AIR.getDefaultState();
+        }
+
+        return super.getStateForNeighborUpdate(
+                state,
+                direction,
+                neighborState,
+                world,
+                pos,
+                neighborPos
+        );
     }
 }
