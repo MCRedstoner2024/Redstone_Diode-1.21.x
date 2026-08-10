@@ -1,6 +1,5 @@
 package net.mcredstoner2026.redstonediode.block.custom;
 
-import net.mcredstoner2026.redstonediode.RedstoneDiode;
 import net.mcredstoner2026.redstonediode.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -13,12 +12,14 @@ import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.block.WireOrientation;
+import net.minecraft.world.tick.ScheduledTickView;
 
 public class RedstoneDiodeBlock extends Block {
     private static final VoxelShape SHAPE = VoxelShapes.union(
@@ -83,7 +84,7 @@ public class RedstoneDiodeBlock extends Block {
             World world,
             BlockPos pos,
             Block sourceBlock,
-            BlockPos sourcePos,
+            WireOrientation sourcePos,
             boolean notify
     ) {
         updatePower(world, pos);
@@ -157,11 +158,14 @@ public class RedstoneDiodeBlock extends Block {
 
     protected BlockState getStateForNeighborUpdate(
             BlockState state,
-            Direction direction,
-            BlockState neighborState,
-            WorldAccess world,
+            WorldView world,
+            ScheduledTickView tickView,
             BlockPos pos,
-            BlockPos neighborPos
+            Direction direction,
+            BlockPos neighborPos,
+            BlockState neighborState,
+            Random random
+
     ) {
         if (direction == Direction.DOWN && !hasSupport(world, pos)) {
             return Blocks.AIR.getDefaultState();
@@ -169,11 +173,13 @@ public class RedstoneDiodeBlock extends Block {
 
         return super.getStateForNeighborUpdate(
                 state,
-                direction,
-                neighborState,
                 world,
+                tickView,
                 pos,
-                neighborPos
+                direction,
+                neighborPos,
+                neighborState,
+                random
         );
     }
 
