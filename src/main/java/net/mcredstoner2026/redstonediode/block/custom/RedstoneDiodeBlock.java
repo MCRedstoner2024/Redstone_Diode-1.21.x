@@ -1,10 +1,12 @@
 package net.mcredstoner2026.redstonediode.block.custom;
 
 import net.mcredstoner2026.redstonediode.RedstoneDiode;
+import net.mcredstoner2026.redstonediode.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
@@ -173,5 +175,9 @@ public class RedstoneDiodeBlock extends Block {
                 pos,
                 neighborPos
         );
+    }
+
+    public ItemStack getPickStack(World world, BlockPos pos, BlockState state) {
+        return new ItemStack(ModBlocks.REDSTONE_DIODE);
     }
 }

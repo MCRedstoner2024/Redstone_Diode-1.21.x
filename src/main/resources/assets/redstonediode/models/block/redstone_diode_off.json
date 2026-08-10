@@ -3,7 +3,8 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "minecraft:block/smooth_stone",
-		"2": "redstonediode:block/redstone_diode_torch_off"
+		"2": "redstonediode:block/redstone_diode_torch_off",
+		"particle": "minecraft:block/redstone_torch"
 	},
 	"elements": [
 		{
