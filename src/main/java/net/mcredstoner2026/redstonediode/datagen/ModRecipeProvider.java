@@ -24,6 +24,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void generate(RecipeExporter exporter) {
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.REDSTONE, ModItems.REDSTONE_TEST_ITEM, RecipeCategory.REDSTONE, ModBlocks.REDSTONE_TEST_BLOCK);
+
     }
 }

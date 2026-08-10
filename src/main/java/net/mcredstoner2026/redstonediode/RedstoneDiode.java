@@ -3,7 +3,6 @@ package net.mcredstoner2026.redstonediode;
 import net.fabricmc.api.ModInitializer;
 
 import net.mcredstoner2026.redstonediode.block.ModBlocks;
-import net.mcredstoner2026.redstonediode.component.ModDataComponentTypes;
 import net.mcredstoner2026.redstonediode.item.ModItemGroups;
 import net.mcredstoner2026.redstonediode.item.ModItems;
 
@@ -21,6 +20,5 @@ public class RedstoneDiode implements ModInitializer {
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 
-		ModDataComponentTypes.registerDataComponentTypes();
 	}
 }
