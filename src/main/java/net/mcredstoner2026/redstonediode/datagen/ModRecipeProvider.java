@@ -23,10 +23,10 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             public void generate() {
                 createShaped(RecipeCategory.REDSTONE, ModBlocks.REDSTONE_DIODE)
                         .pattern(" T ")
-                        .pattern(" C ")
+                        .pattern(" Q ")
                         .pattern(" S ")
                         .input('T', Items.REDSTONE_TORCH)
-                        .input('C', Items.COMPARATOR)
+                        .input('Q', Items.QUARTZ)
                         .input('S', Items.STONE)
                         .criterion(hasItem(Items.REDSTONE_TORCH), conditionsFromItem(Items.REDSTONE_TORCH))
                         .criterion(hasItem(Items.COMPARATOR), conditionsFromItem(Items.COMPARATOR))
