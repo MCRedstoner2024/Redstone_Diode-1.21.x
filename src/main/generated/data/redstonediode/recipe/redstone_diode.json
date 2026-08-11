@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "C": "minecraft:comparator",
+    "Q": "minecraft:quartz",
     "S": "minecraft:stone",
     "T": "minecraft:redstone_torch"
   },
   "pattern": [
     " T ",
-    " C ",
+    " Q ",
     " S "
   ],
   "result": {
