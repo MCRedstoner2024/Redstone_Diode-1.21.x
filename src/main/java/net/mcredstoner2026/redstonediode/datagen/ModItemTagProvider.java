@@ -2,7 +2,6 @@ package net.mcredstoner2026.redstonediode.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.mcredstoner2026.redstonediode.item.ModItems;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;

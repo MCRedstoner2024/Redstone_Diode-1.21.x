@@ -34,10 +34,6 @@ public class ModBlocks {
         return Registry.register(Registries.BLOCK, Identifier.of(RedstoneDiode.MOD_ID, name), toRegister);
     }
 
-    private static Block registerBlockWithoutBlockItem(String name, Function<AbstractBlock.Settings, Block> function) {
-        return Registry.register(Registries.BLOCK, Identifier.of(RedstoneDiode.MOD_ID, name),
-                function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(RedstoneDiode.MOD_ID, name)))));
-    }
 
     private static void registerBlockItem(String name, Block block) {
         Registry.register(Registries.ITEM, Identifier.of(RedstoneDiode.MOD_ID, name),
