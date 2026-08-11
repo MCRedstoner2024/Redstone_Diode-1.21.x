@@ -2,17 +2,12 @@ package net.mcredstoner2026.redstonediode.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.mcredstoner2026.redstonediode.RedstoneDiode;
 import net.mcredstoner2026.redstonediode.block.ModBlocks;
-import net.mcredstoner2026.redstonediode.item.ModItems;
-import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.recipe.Recipe;
+import net.minecraft.data.recipe.RecipeExporter;
+import net.minecraft.data.recipe.RecipeGenerator;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.util.Identifier;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -23,7 +18,27 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     }
 
     @Override
-    public void generate(RecipeExporter exporter) {
+    protected RecipeGenerator getRecipeGenerator(RegistryWrapper.WrapperLookup wrapperLookup, RecipeExporter recipeExporter) {
+        return new RecipeGenerator(wrapperLookup, recipeExporter) {
+            @Override
+            public void generate() {
+                createShaped(RecipeCategory.REDSTONE, ModBlocks.REDSTONE_DIODE)
+                        .pattern(" T ")
+                        .pattern(" C ")
+                        .pattern(" S ")
+                        .input('T', Items.REDSTONE_TORCH)
+                        .input('C', Items.COMPARATOR)
+                        .input('S', Items.STONE)
+                        .criterion(hasItem(Items.REDSTONE_TORCH), conditionsFromItem(Items.REDSTONE_TORCH))
+                        .criterion(hasItem(Items.COMPARATOR), conditionsFromItem(Items.COMPARATOR))
+                        .criterion(hasItem(Items.REPEATER), conditionsFromItem(Items.REPEATER))
+                        .offerTo(exporter);
+            }
+        };
+    }
 
+    @Override
+    public String getName() {
+        return "RedstoneDiode Recipes";
     }
 }

@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
@@ -28,6 +29,8 @@ public class RedstoneDiodeBlock extends Block {
             Block.createCuboidShape(7, 4, 7, 9, 14, 9),
             Block.createCuboidShape(6, 14, 6, 10, 16, 10)
     );
+
+    private static final int DELAY = 2;
 
     public static final IntProperty POWER = Properties.POWER;
     public static final BooleanProperty POWERED = Properties.POWERED;
@@ -53,15 +56,14 @@ public class RedstoneDiodeBlock extends Block {
         BlockState state = world.getBlockState(pos);
         int power = getInputPower(world, pos);
         boolean powered = power > 0;
-
         if (state.get(POWER) != power || state.get(POWERED) != powered) {
             world.setBlockState(
                     pos,
                     state.with(POWER, power).with(POWERED, powered)
             );
 
-            world.updateNeighborsAlways(pos, this);
-            world.updateNeighborsAlways(pos.up(), this);
+            world.updateNeighborsAlways(pos.up(), this, null);
+            world.updateNeighborsAlways(pos, this, null);
         }
     }
 
@@ -87,7 +89,9 @@ public class RedstoneDiodeBlock extends Block {
             WireOrientation sourcePos,
             boolean notify
     ) {
-        updatePower(world, pos);
+        if (!world.isClient()) {
+            world.scheduleBlockTick(pos, this, DELAY);
+        }
 
         super.neighborUpdate(
                 state,
@@ -183,7 +187,18 @@ public class RedstoneDiodeBlock extends Block {
         );
     }
 
-    public ItemStack getPickStack(World world, BlockPos pos, BlockState state) {
+    @Override
+    protected ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state, boolean includeData) {
         return new ItemStack(ModBlocks.REDSTONE_DIODE);
+    }
+
+    @Override
+    protected void scheduledTick(
+            BlockState state,
+            ServerWorld world,
+            BlockPos pos,
+            Random random
+    ) {
+        updatePower(world, pos);
     }
 }
